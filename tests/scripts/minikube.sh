@@ -184,6 +184,8 @@ case "${1:-}" in
     ;;
   clean)
     minikube delete
+    echo '* Removing any routes left by 'minikube tunnel' (may ask for root password)'
+    minikube tunnel --cleanup
     ;;
   *)
     echo "usage:" >&2
