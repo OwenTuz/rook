@@ -37,6 +37,8 @@ Stopping the cluster and destroying the Minikube VM can be done with:
 tests/scripts/minikube.sh clean
 ```
 
+Since minikube runs the Kubernetes cluster in a VM, you will need to set the flag `--remote-test-cluster` when running tests (see below).
+
 #### Kubeadm (recommended for Ubuntu)
 Starting the cluster using `kubeadm` is as simple as running:
 ```console
@@ -96,12 +98,13 @@ Integration tests can be run using tests binary `_output/tests/${platform}/integ
 ### Test parameters
 In addition to standard go tests parameters, the following custom parameters are available while running tests:
 
-| Parameter         | Description                                  | Possible values  | Default           |
-| ----------------- | -------------------------------------------- | ---------------- | ----------------- |
-| rook_platform     | platform Rook needs to be installed on       | kubernetes       | kubernetes        |
-| k8s_version       | version of Kubernetes to be installed        | v1.10+            | v1.13.1          |
-| rook_image        | Rook image name to be installed              | valid image name | rook/ceph         |
-| skip_install_rook | skips installing Rook (if already installed) | true or false    | false             |
+| Parameter           | Description                                               | Possible values  | Default           |
+| ------------------- | --------------------------------------------------------- | ---------------- | ----------------- |
+| rook_platform       | platform Rook needs to be installed on                    | kubernetes       | kubernetes        |
+| k8s_version         | version of Kubernetes to be installed                     | v1.10+           | v1.13.1           |
+| rook_image          | Rook image name to be installed                           | valid image name | rook/ceph         |
+| skip_install_rook   | skips installing Rook (if already installed)              | true or false    | false             |
+| remote_test_cluster | tests will be run on a VM or remote host such as minikube | true or false    | false             |
 
 ### Running Tests with parameters.
 #### To run all integration tests run

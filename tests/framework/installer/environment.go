@@ -27,6 +27,7 @@ type EnvironmentManifest struct {
 	RookImageName      string
 	ToolboxImageName   string
 	SkipInstallRook    bool
+    RemoteTestCluster   bool
 	LoadVolumeNumber   int
 	LoadConcurrentRuns int
 	LoadTime           int
@@ -44,6 +45,7 @@ func init() {
 	flag.StringVar(&Env.RookImageName, "rook_image", "rook/ceph", "Docker image name for the rook container to install, must be in docker hub or local environment")
 	flag.StringVar(&Env.ToolboxImageName, "toolbox_image", "rook/ceph", "Docker image name of the toolbox container to install, must be in docker hub or local environment")
 	flag.BoolVar(&Env.SkipInstallRook, "skip_install_rook", false, "Indicate if Rook need to installed - false if tests are being running at Rook that is pre-installed")
+	flag.BoolVar(&Env.RemoteTestCluster, "remote_test_cluster", false, "Set this to true if Kubernetes is running remotely, or in a VM (eg minikube)")
 	flag.IntVar(&Env.LoadConcurrentRuns, "load_parallel_runs", 20, "number of routines for load test")
 	flag.IntVar(&Env.LoadVolumeNumber, "load_volumes", 1, "number of volumes(file,object or block) to be created for load test")
 	flag.IntVar(&Env.LoadTime, "load_time", 1800, "number of seconds each thread perform operations for")

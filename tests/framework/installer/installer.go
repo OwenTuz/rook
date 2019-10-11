@@ -80,9 +80,11 @@ func init() {
 	// this default will only work if running kubernetes on the local machine
 	baseTestDir, _ = os.Getwd()
 
-	// The following settings could apply to any environment when the kube context is running on the host and the tests are running inside a
-	// VM such as minikube. This is a cheap test for this condition, we need to find a better way to automate these settings.
-	if runtime.GOOS == "darwin" {
+	// The following settings apply to any environment when the kube context is running on the host and the tests are running inside a
+	// remote host, or VM such as minikube.
+    // The check for GOOS="darwin" was originally our only method of determining that these settings should be applied, and has been
+    // left here to avoid surprising existing Mac users.
+    if (runtime.GOOS == "darwin" || Env.RemoteTestCluster) {
 		createBaseTestDir = false
 		baseTestDir = "/data"
 	}
