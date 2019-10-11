@@ -39,6 +39,8 @@ tests/scripts/minikube.sh clean
 
 Since minikube runs the Kubernetes cluster in a VM, you will need to set the flag `--remote-test-cluster` when running tests (see below).
 
+We also recommend that you run `minikube tunnel` in a separate shell while tests are running. This will maintain routes from your host machine to the IP range used for services in Kubernetes.
+
 #### Kubeadm (recommended for Ubuntu)
 Starting the cluster using `kubeadm` is as simple as running:
 ```console
@@ -87,6 +89,10 @@ tests/scripts/helm.sh up
 tests/scripts/minikube.sh up
 tests/scripts/minikube.sh helm
 tests/scripts/helm.sh up
+```
+In a separate shell:
+```
+minikube tunnel
 ```
 
 #### 3. Run integration tests:

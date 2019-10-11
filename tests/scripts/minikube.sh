@@ -144,6 +144,7 @@ case "${1:-}" in
     # create a link so the default dataDirHostPath will work for this environment
     minikube ssh "sudo mkdir -p /mnt/${DISK}/rook/ && sudo ln -sf /mnt/${DISK}/rook/ /var/lib/"
     copy_images "$2"
+    echo "Finished! Please run 'minikube tunnel' while tests are running. This will allow the tests to talk to services running inside the minikube VM."
     ;;
   down)
     minikube stop
